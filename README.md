@@ -19,14 +19,14 @@ $ python switchsd.py --sys
 - The download should take a few minutes. Once completed, you will see a `switchsd` directory in the same directory as the script
 - Copy all the contents of that folder to the root of your sd card and you are good to go!
 
-# Optional: GitHub OAuth token
+## Optional: GitHub OAuth token
 
 - You can add a GitHub OAuth personal token by going to https://github.com/settings/tokens and generating a new token
 - You do not need to give it any permissions. Just generate a token to use with the application
 - This lets you make 5000 API requests per hour as opposed to 60 with unauthenticated access. 
 - This script is coded to work with both authenticated and unauthenticated access.
 
-# Serving the application via Flask
+## Serving the application via Flask
 
 - This requires a linux based server. 
 - Make sure your `python3` and `python3-pip` installations are in order
