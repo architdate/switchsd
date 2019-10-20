@@ -1,2 +1,4 @@
 sdswitch/
 output/
+config.json
+__pycache__/

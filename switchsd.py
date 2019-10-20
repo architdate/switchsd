@@ -24,6 +24,16 @@ HBAPPSTORE = ('https://api.github.com/repos/vgmoose/hb-appstore/releases/latest'
 
 # helper functions
 
+def get_oauth_token():
+    if not os.path.exists('config.json'):
+        return None
+    else:
+        with open('config.json', 'r') as fp:
+            js = json.load(fp)
+        if 'oauth-token' in js.keys():
+            return js['oauth-token']
+        return None
+
 def download_file(url, output_dir, filename = None):
     if filename == None:
         filename = url.rsplit('/', 1)[1]
@@ -33,7 +43,11 @@ def download_file(url, output_dir, filename = None):
     return filename
 
 def get_github_asset_url(path, regex):
-    assets = json.loads(requests.get(path).text)['assets']
+    oauth = get_oauth_token()
+    if oauth:
+        assets = json.loads(requests.get(path, headers={'Authorization': 'token {}'.format(oauth)}).text)['assets']
+    else:
+        assets = json.loads(requests.get(path).text)['assets']
     for i in assets:
         if re.match(regex, i['name']):
             return i['browser_download_url']
@@ -69,7 +83,7 @@ def download_all(downloadable, dlpath):
         else:
             download_file(i, dlpath)
 
-def prepare_sd(path):
+def prepare_sd(path, EMUNAND=True):
     rootpath = path + '/sdswitch'
 
     # Copy the contents of the Atmosphere .zip file to the root of your SD card
@@ -120,7 +134,6 @@ def prepare_sd(path):
 
 if __name__ == '__main__':
     # Usage: python switchsd.py [--sys]
-
     EMUNAND = True
 
     if '--sys' in sys.argv or '--sysnand' in sys.argv:
@@ -129,4 +142,4 @@ if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     if not os.path.exists('sdswitch'):
         os.mkdir('sdswitch')
-    prepare_sd(os.getcwd())
+    prepare_sd(os.getcwd(), EMUNAND)
