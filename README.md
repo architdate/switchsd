@@ -1,6 +1,10 @@
 # switchsd
 A tool to automatically download the latest versions of the required sd files for Atmosphere
 
+## Download latest sd files:
+emuMMC sd files: http://switchsd.commoncoder.net/emunand
+sysMMC sd files: http://switchsd.commoncoder.net/emunand
+
 ## Direct Usage:
 
 - First ensure that you have a python 3+ distribution
