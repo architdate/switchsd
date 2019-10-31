@@ -20,6 +20,7 @@ FTPD = ('https://api.github.com/repos/mtheall/ftpd/releases/latest', 'ftpd\.nro'
 NXTHEMEINSTALLER = ('https://api.github.com/repos/exelix11/SwitchThemeInjector/releases/latest', 'NXThemesInstaller\.nro')
 NXSHELL = ('https://api.github.com/repos/joel16/NX-Shell/releases/latest', 'NX-Shell\.nro')
 HBAPPSTORE = ('https://api.github.com/repos/vgmoose/hb-appstore/releases/latest', 'appstore\.nro')
+CHECKPOINT = ('https://api.github.com/repos/Flagbrew/Checkpoint/releases/latest', 'Checkpoint\.nro')
 
 
 # helper functions
@@ -126,10 +127,11 @@ def prepare_sd(path, EMUNAND=True):
         os.mkdir(rootpath+'/switch/appstore')
     download_file(get_github_asset_url(HBAPPSTORE[0], HBAPPSTORE[1]), rootpath+'/switch/appstore')
 
-    # Copy ftpd.nro, NX-Shell.nro and NxThemesInstaller.nro to the switch folder on your SD card
+    # Copy ftpd.nro, NX-Shell.nro, NxThemesInstaller.nro and Checkpoint.nro to the switch folder on your SD card
     download_file(get_github_asset_url(FTPD[0], FTPD[1]), rootpath+'/switch')
     download_file(get_github_asset_url(NXSHELL[0], NXSHELL[1]), rootpath+'/switch')
     download_file(get_github_asset_url(NXTHEMEINSTALLER[0], NXTHEMEINSTALLER[1]), rootpath+'/switch')
+    download_file(get_github_asset_url(CHECKPOINT[0], CHECKPOINT[1]), rootpath+'/switch')
     
 
 if __name__ == '__main__':
